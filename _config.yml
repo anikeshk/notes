@@ -8,6 +8,13 @@ repository: anikeshk/notes
 aux_links:
   anikeshk.com: https://anikeshk.com/
 
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+
 aux_links_new_tab: true
 
 permalink: pretty
