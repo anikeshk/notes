@@ -6,9 +6,10 @@ nav_order: 3
 
 Notes from [LeetCode's 30 Days of JavaScript Challenge](https://leetcode.com/studyplan/30-days-of-javascript/).
 
-# Functions
-
+1. TOC
 {:toc}
+
+# Functions
 
 **Basic Syntax**
 
