@@ -4,11 +4,11 @@ parent: Leetcode
 nav_order: 3
 ---
 
-{:toc}
-
 Notes from [LeetCode's 30 Days of JavaScript Challenge](https://leetcode.com/studyplan/30-days-of-javascript/).
 
 # Functions
+
+{:toc}
 
 **Basic Syntax**
 
