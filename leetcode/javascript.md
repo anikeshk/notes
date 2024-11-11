@@ -1,6 +1,5 @@
 ---
 title: JavaScipt Notes
-layout: page
 parent: Leetcode
 nav_order: 2
 ---

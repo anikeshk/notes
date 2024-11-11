@@ -10,6 +10,8 @@ aux_links:
 
 aux_links_new_tab: true
 
-enable_copy_code_button: true
+permalink: pretty
 
 heading_anchors: true
+
+enable_copy_code_button: true
