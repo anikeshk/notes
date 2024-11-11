@@ -1,6 +1,6 @@
 ---
-title: LeetCode
-nav_order: 1
+title: Leetcode
+nav_order: 2
 ---
 
-`hello world`
+hello world
