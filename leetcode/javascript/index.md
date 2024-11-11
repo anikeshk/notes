@@ -1,7 +1,7 @@
 ---
-title: Javascipt
+title: Javascript
 parent: Leetcode
-nav_order: 2
+nav_order: 3
 ---
 
 Notes from [LeetCode's 30 Days of JavaScript Challenge](https://leetcode.com/studyplan/30-days-of-javascript/).
