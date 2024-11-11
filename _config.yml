@@ -3,6 +3,13 @@ description: Notes on masters, interview preparation and other ramblings by Anik
 theme: just-the-docs
 
 url: https://anikeshk.github.io/notes/
+repository: anikeshk/notes
 
 aux_links:
   anikeshk.com: https://anikeshk.com/
+
+aux_links_new_tab: true
+
+enable_copy_code_button: true
+
+heading_anchors: true
