@@ -1,7 +1,6 @@
 ---
-title: JavaScipt
+title: Javascipt
 parent: Leetcode
-permalink: javascript
 nav_order: 2
 ---
 
