@@ -4,6 +4,9 @@ parent: Leetcode
 nav_order: 3
 ---
 
+Needs Clean Up
+{: .label .label-yellow }
+
 Notes from [LeetCode's 30 Days of JavaScript Challenge](https://leetcode.com/studyplan/30-days-of-javascript/).
 
 1. TOC
@@ -152,7 +155,7 @@ console.log(result); // "8-5-2-1"
 
 In this example, the sort() method sorts the array, the reverse() method subsequently reverses the sorted array, and finally, the join("-") method joins the elements into a string with "-" as a separator. Each of these methods returns an array, allowing the next method to be directly invoked on the result.
 
-**Error Handling**
+# Error Handling
 
 **Throwing an Error instance**
 
@@ -193,6 +196,8 @@ try {
 }
 ```
 
+# Objects and Classes
+
 **Objects**
 
 At their core, objects are just mappings from strings to other values. The values can be anything: strings, functions, other objects, etc. The string that maps to the value is called the key.
@@ -218,3 +223,93 @@ The reason is that accessing keys on an object is actually slightly more complic
 Every time a new Person is created, age and name fields are added to the object. However only a single reference to the prototype object is added. So no matter how many instances of Person are created or how many methods are on the class, only a single prototype object is generated.
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+
+# Callbacks
+
+A callback is defined as a function passed as an argument to another function. They allow you to write code that can be reused across different use-cases.
+
+Just about any generic algorithm can benefit from accepting callbacks. The standard JavaScript library and many 3rd party packages rely heavily on them.
+
+1. **for with empty array**
+   1. Will return `undefined` for accessing an index that does not exist -> slow and unpredictable performance.
+   2. *~250ms for 5M elements*
+2. **for...in loop**
+   1. ```js
+      for (let i in arr) {
+        if(fn(arr[i], Number(i))) {
+          res.push(arr[i])
+        }
+      }
+      ```
+   2. Respects sparse arrays, like `Array.map`. For example, if you wrote let `arr = Array(100); arr[1] = 10;`, this approach would only transform the single element.
+   3. *1000ms for 5M elements*
+   4. Needs to handle sparse arrays, hence slower than optimal custom implementation that assumes arrays aren't sparse.
+3. **Push values onto arrays**
+   1. In JavaScript arrays can have elements appended with an average *O(1)* time.
+   2. *~200ms for 5M elements*
+4. **Preallocate memory**
+   1. `const newArr = new Array(arr.length);`
+   2. Avoids needing the array to be resized on each push operation.
+   3. *~40ms for 5M elements*
+5. **Bit Integer Array**
+   1. `const newArr = new Int32Array(arr.length);`
+   2. JavaScript allows you to use typed arrays. These aren't like normal JavaScript arrays because they only allow specific data types and their size cannot be altered.
+   3. These are a useful tool when you want to store lots of data in a memory efficient way. Traditional arrays can take up significant amounts of memory because they are not fixed size and can store arbitrary data.
+   4. *~20ms for 5M elements*
+6. **In-Memory Transformation**
+   1. `arr[i] = fn(arr[i], i);`
+   2. Not usually recommeneded but fast.
+   3. *~10ms for 5M elements*
+
+https://leetcode.com/problems/apply-transform-over-each-element-in-array/editorial/
+
+# Truthiness and Logical Operators
+
+All values are considered truthy except the following:
+
+- false
+- All forms of zero, meaning 0, -0 (output of 0/-1), and 0n (output of BigInt(0))
+- NaN ("Not a Number", one way to get it is with 0/0)
+- "" (empty string)
+- null
+- undefined
+
+In JavaScript, logical operators don't return booleans; they return one of the two operands provided to them.
+At first this is confusing, but it is actually quite elegant and allows you to write *very terse code*.
+
+- The OR operator || returns the first value if the first value is truthy (without evaluating the 2nd value). Otherwise it returns the second value.
+- The AND operator && returns the first value if the first value is falsy (without evaluating the 2nd value). Otherwise it returns the 2nd value.
+- The Nullish Coalescing operator ?? is identical to || except it only treats null and undefined as falsy.
+
+# Map, Reduce and Filter
+
+*notes for map and reduce are pending*
+
+**Filter**
+
+An extremely common task in programming is taking a list of data and indexing each piece of data by some key. That way, the data is accessible by it's key in O(1) time.
+
+```
+const groceries = [
+  { id: 173, name: "Soup" }, 
+  { id: 964, name: "Apple" },
+  { id: 535, name: "Cheese" }
+];
+
+const indexedGroceries = groceries.reduce((accumulator, val) => {
+  accumulator[val.id] = val;
+  return accumulator;
+}, {});
+
+console.log(indexedGroceries);
+/**
+ * {
+ *   "173": { id: 173, name: "Soup" },
+ *   "964": { id: 964, name: "Apple" },
+ *   "535": { id: 535, name: "Cheese" },
+ * }
+ */
+```
+
+Note that a common performance mistake that developers make is to create a clone of the accumulator for each array iteration. i.e. return { ...accumulator, [val.id]: val };. This results in an *O(n^2)* algorithm.
+
